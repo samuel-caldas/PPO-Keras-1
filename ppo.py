@@ -10,9 +10,11 @@ import matplotlib.pyplot as plt
 import numba as nb
 
 #ENV = 'Breakout-ram-v0'
-ENV = 'LunarLander-v2'
-#ENV = 'CartPole-v0'
+#ENV = 'LunarLander-v2'
+ENV = 'CartPole-v0'
 #ENV = 'CartPole-v1'
+#ENV = 'Pendulum-v0'
+
 
 EPISODES = 10000
 
@@ -21,17 +23,16 @@ EPOCHS = 10
 
 GAMMA = 0.99
 
+
 BATCH_SIZE = 512
 NUM_ACTIONS = 4
 NUM_STATE = 8
 
 DUMMY_ACTION, DUMMY_VALUE = np.zeros((1, NUM_ACTIONS)), np.zeros((1,1))
 
-
 @nb.jit
 def exponential_average(old, new, b1):
     return old * b1 + (1-b1) * new
-
 
 def proximal_policy_optimization_loss(actual_value, predicted_value, old_prediction):
     advantage = actual_value - predicted_value
@@ -50,7 +51,7 @@ class Agent:
         self.critic = self.build_critic()
         self.actor = self.build_actor()
         self.env = gym.make(ENV)
-        self.env.render(mode="human")
+        #self.env.render(mode="human")
 
         print(self.env.action_space, 'action_space', self.env.observation_space, 'observation_space')
         self.episode = 0
