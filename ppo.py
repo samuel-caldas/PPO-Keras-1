@@ -5,10 +5,10 @@ import numpy as np
 import gym
 
 from NoisyDense import NoisyDense
-from keras.models import Model
-from keras.layers import Input, Dense
-from keras import backend as K
-from keras.optimizers import Adam
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Dense
+from tensorflow.keras import backend as K
+from tensorflow.keras.optimizers import Adam
 import matplotlib.pyplot as plt
 import numba as nb
 
